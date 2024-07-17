@@ -31,6 +31,8 @@ services:
       - api
     ports:
       - "80:80"
+    environment:
+      - NGINX_SERVER_NAME=${NGINX_SERVER_NAME}
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
