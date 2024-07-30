@@ -8,7 +8,7 @@ class Category(models.Model):
         return self.title
 
 class MainCarousel(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='main_carousels')
     title = models.CharField(max_length=120, null=True, blank=True)
 
     def __str__(self) -> str:
@@ -26,7 +26,7 @@ class MainCarouselItem(models.Model):
         return f'{self.title} --- {self.carousel.title}'
 
 class ColorCarousel(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='color_carousels')
     title = models.CharField(max_length=120, null=True, blank=True)
 
     def __str__(self) -> str:
