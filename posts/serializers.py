@@ -35,8 +35,8 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
-    main_carousels = MainCarouselSerializer(many=True, read_only=True)
-    color_carousels = ColorCarouselSerializer(many=True, read_only=True)
+    main_carousels = MainCarouselSerializer(many=True, read_only=True, source='maincarousel_set')
+    color_carousels = ColorCarouselSerializer(many=True, read_only=True, source='colorcarousel_set')
 
     class Meta:
         model = Category

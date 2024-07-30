@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Category, MainCarousel, ColorCarousel
-from .serializers import CategorySerializer, MainCarouselSerializer, ColorCarouselSerializer
+from .serializers import CategoryDetailSerializer, CategorySerializer, MainCarouselSerializer, ColorCarouselSerializer
 
 
 class CategoryListView(generics.ListAPIView):
@@ -13,5 +13,5 @@ class CategoryListView(generics.ListAPIView):
 
 class CategoryDetailView(generics.RetrieveAPIView):
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+    serializer_class = CategoryDetailSerializer
     lookup_field = 'id'
