@@ -1,5 +1,24 @@
 from rest_framework import serializers
-from .models import Category, MainCarousel, MainCarouselItem, ColorCarousel, Color, ColorCarouselImage
+from .models import Category, MainCarousel, MainCarouselItem, ColorCarousel, Color, ColorCarouselImage, MainImage, MainCard, MainCardItem
+
+class MainImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MainImage
+        fields = '__all__'
+
+
+class MainCardItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MainCardItem
+        fields = '__all__'
+
+class MainCardSerializer(serializers.ModelSerializer):
+    items = MainCardItemSerializer(many=True, read_only=True)    
+        
+    class Meta:
+        model = MainCard
+        fields = '__all__'
+
 
 
 class MainCarouselItemSerializer(serializers.ModelSerializer):
@@ -43,6 +62,8 @@ class CategorySerializer(serializers.ModelSerializer):
 class CategoryDetailSerializer(serializers.ModelSerializer):
     main_carousels = MainCarouselSerializer(many=True, read_only=True, source='maincarousel_set')
     color_carousels = ColorCarouselSerializer(many=True, read_only=True, source='colorcarousel_set')
+    main_image = MainImageSerializer(many=True, read_only=True, source='mainimage_set')
+    maincards = MainCardSerializer(many=True, read_only=True, source='maincard_set')
 
     class Meta:
         model = Category

@@ -7,6 +7,23 @@ class Category(models.Model):
     def __str__(self) -> str:
         return self.title
 
+class MainImage(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=200, null=True, blank=True)
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
+
+class MainCard(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=200, null=True, blank=True)
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
+
+class MainCardItem(models.Model):
+    main_card = models.ForeignKey(MainCard, on_delete=models.SET_NULL, null=True, related_name='items')
+    advantage = models.CharField(max_length=120, null=True, blank=True)
+    title = models.CharField(max_length=120, null=True, blank=True)
+    text = models.CharField(max_length=500, null=True, blank=True)
+
+    
 class MainCarousel(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=120, null=True, blank=True)
