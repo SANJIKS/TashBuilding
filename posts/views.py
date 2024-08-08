@@ -2,8 +2,8 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Category, MainCarousel, ColorCarousel, Footer
-from .serializers import CategoryDetailSerializer, CategorySerializer, MainCarouselSerializer, ColorCarouselSerializer, FooterSerializer
+from .models import Category, MainCarousel, Footer
+from .serializers import CategoryDetailSerializer, CategorySerializer, MainCarouselSerializer, FooterSerializer
 
 
 class CategoryListView(generics.ListAPIView):
