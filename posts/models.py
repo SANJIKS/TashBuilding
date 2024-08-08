@@ -42,19 +42,19 @@ class MainCarouselItem(models.Model):
     def __str__(self) -> str:
         return f'{self.title} --- {self.carousel.title}'
 
-class ColorCarousel(models.Model):
+class SizeCarousel(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=120, null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
 
-class Color(models.Model):
-    carousel = models.ForeignKey(ColorCarousel, on_delete=models.SET_NULL, null=True, related_name='items')
-    color = ColorField(default='#FF0000')
+class Size(models.Model):
+    carousel = models.ForeignKey(SizeCarousel, on_delete=models.SET_NULL, null=True, related_name='items')
+    size = models.CharField(max_length=200, null=True, blank=True)
 
-class ColorCarouselImage(models.Model):
-    color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True, related_name='items')
+class SizeCarouselImage(models.Model):
+    size = models.ForeignKey(Size, on_delete=models.SET_NULL, null=True, related_name='items')
     title = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='posts/', null=True, blank=True)
@@ -63,7 +63,7 @@ class ColorCarouselImage(models.Model):
 
 
     def __str__(self) -> str:
-        return f'{self.title} --- {self.color.carousel.title}'
+        return f'{self.title} --- {self.size.carousel.title}'
 
 
 class Footer(models.Model):
@@ -76,4 +76,4 @@ class Footer(models.Model):
     whatsapp = models.CharField(max_length=50, null=True, blank=True)
     telegram = models.CharField(max_length=50, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
-    
+

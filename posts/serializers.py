@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, ColorCarousel, Color, ColorCarouselImage, MainImage, MainCard, MainCardItem
+from .models import Category, Footer, MainCarousel, MainCarouselItem, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem
 
 class MainImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,24 +34,24 @@ class MainCarouselSerializer(serializers.ModelSerializer):
         model = MainCarousel
         fields = '__all__'
 
-class ColorCarouselImageSerializer(serializers.ModelSerializer):
+class SizeCarouselImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ColorCarouselImage
+        model = SizeCarouselImage
         fields = '__all__'
         
-class ColorSerializer(serializers.ModelSerializer):
-    items = ColorCarouselImageSerializer(many=True, read_only=True)
+class SizeSerializer(serializers.ModelSerializer):
+    items = SizeCarouselImageSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Color
+        model = Size
         fields = '__all__'
 
 
-class ColorCarouselSerializer(serializers.ModelSerializer):
-    items = ColorSerializer(many=True, read_only=True)
+class SizeCarouselSerializer(serializers.ModelSerializer):
+    items = SizeSerializer(many=True, read_only=True)
 
     class Meta:
-        model = ColorCarousel
+        model = SizeCarousel
         fields = '__all__'
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -61,7 +61,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
     main_carousels = MainCarouselSerializer(many=True, read_only=True, source='maincarousel_set')
-    color_carousels = ColorCarouselSerializer(many=True, read_only=True, source='colorcarousel_set')
+    size_carousels = SizeCarouselSerializer(many=True, read_only=True, source='sizecarousel_set')
     main_image = MainImageSerializer(many=True, read_only=True, source='mainimage_set')
     maincards = MainCardSerializer(many=True, read_only=True, source='maincard_set')
 
