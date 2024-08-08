@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, MainCarousel, MainCarouselItem, ColorCarousel, Color, ColorCarouselImage, MainImage, MainCard, MainCardItem
+from .models import Category, Footer, MainCarousel, MainCarouselItem, ColorCarousel, Color, ColorCarouselImage, MainImage, MainCard, MainCardItem
 
 class MainImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -67,4 +67,10 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
+        fields = '__all__'
+
+
+class FooterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Footer
         fields = '__all__'

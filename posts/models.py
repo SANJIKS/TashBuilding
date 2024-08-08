@@ -64,3 +64,16 @@ class ColorCarouselImage(models.Model):
 
     def __str__(self) -> str:
         return f'{self.title} --- {self.color.carousel.title}'
+
+
+class Footer(models.Model):
+    title = models.CharField(max_length=120, null=True, blank=True)
+    instagram = models.CharField(max_length=200, null=True, blank=True)
+    twitter = models.CharField(max_length=200, null=True, blank=True)
+    youtube = models.CharField(max_length=200, null=True, blank=True)
+    phone_number = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    whatsapp = models.CharField(max_length=50, null=True, blank=True)
+    telegram = models.CharField(max_length=50, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    
