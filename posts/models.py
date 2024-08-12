@@ -77,3 +77,33 @@ class Footer(models.Model):
     telegram = models.CharField(max_length=50, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
 
+
+
+class Tab(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=120, null=True, blank=True)
+
+    def __str__(self) -> str:
+        return self.title
+    
+class TabItem(models.Model):
+    tab = models.ForeignKey(Tab, on_delete=models.SET_NULL, null=True, blank=True, related_name='items')
+    title = models.CharField(max_length=300, null=True, blank=True)
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
+    image_title = models.CharField(max_length=300, null=True, blank=True)
+    image2 = models.ImageField(upload_to='posts/', null=True, blank=True)
+
+
+class Advantage(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=120, null=True, blank=True)
+
+    def __str__(self) -> str:
+        return self.title
+    
+
+class AdvantageItem(models.Model):
+    advantage = models.ForeignKey(Advantage, on_delete=models.SET_NULL, null=True, related_name='items')
+    comparison = models.CharField(max_length=200, null=True, blank=True)
+    lstk = models.CharField(max_length=200, null=True, blank=True)
+    traditional_materials = models.CharField(max_length=200, null=True, blank=True)

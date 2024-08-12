@@ -1,5 +1,33 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem
+from .models import Category, Footer, MainCarousel, MainCarouselItem, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage
+
+class TabItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TabItem
+        fields = '__all__'
+
+
+class TabSerializer(serializers.ModelSerializer):
+    items = TabItemSerializer(many=True, read_only=True)    
+
+    class Meta:
+        model = Tab
+        fields = '__all__'
+
+
+class AdvantageItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AdvantageItem
+        fields = '__all__'
+
+
+class AdvantageSerializer(serializers.ModelSerializer):
+    items = AdvantageItemSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model = Advantage
+        fields = '__all__'
+
 
 class MainImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,6 +92,8 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
     size_carousels = SizeCarouselSerializer(many=True, read_only=True, source='sizecarousel_set')
     main_image = MainImageSerializer(many=True, read_only=True, source='mainimage_set')
     maincards = MainCardSerializer(many=True, read_only=True, source='maincard_set')
+    tabs = TabSerializer(many=True, read_only=True, source='tab_set')
+    advantages = AdvantageSerializer(many=True, read_only=True, source='advantage_set')
 
     class Meta:
         model = Category
