@@ -107,3 +107,22 @@ class AdvantageItem(models.Model):
     comparison = models.CharField(max_length=200, null=True, blank=True)
     lstk = models.CharField(max_length=200, null=True, blank=True)
     traditional_materials = models.CharField(max_length=200, null=True, blank=True)
+
+
+class Unique(models.Model):
+    title = models.CharField(max_length=100, null=True, blank=True)
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
+
+
+class UniqueItem(models.Model):
+    unique = models.ForeignKey(Unique, on_delete=models.SET_NULL, null=True, related_name='items')
+    advantage = models.CharField(max_length=120, null=True, blank=True)
+    title = models.CharField(max_length=100, null=True, blank=True)
+    description = models.TextField(max_length=300, null=True, blank=True)
+
+
+class MainText(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=100, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    second_text = models.CharField(max_length=500, null=True, blank=True)

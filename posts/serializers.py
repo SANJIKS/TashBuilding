@@ -1,5 +1,17 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage
+from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Unique, UniqueItem
+
+class UniqueItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UniqueItem
+        fields = '__all__'
+
+
+class UniqueSerializer(serializers.ModelSerializer):
+    items = UniqueItemSerializer(many=True, read_only=True)    
+    class Meta:
+        model = Unique
+        fields = '__all__'
 
 class TabItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -87,6 +99,12 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+class MainTextSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MainText
+        fields = '__all__'
+
+
 class CategoryDetailSerializer(serializers.ModelSerializer):
     main_carousels = MainCarouselSerializer(many=True, read_only=True, source='maincarousel_set')
     size_carousels = SizeCarouselSerializer(many=True, read_only=True, source='sizecarousel_set')
@@ -104,3 +122,5 @@ class FooterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Footer
         fields = '__all__'
+
+
