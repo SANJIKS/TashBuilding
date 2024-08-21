@@ -1,5 +1,10 @@
-FROM alpine:3.14
+FROM ubuntu:latest
 
-RUN apk add --no-cache openssh-client
+RUN apt-get update && \
+    apt-get install -y openssh-client
 
-CMD ssh -R $SERVEO_DOMAIN:80:localhost:$LOCAL_PORT serveo.net
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
