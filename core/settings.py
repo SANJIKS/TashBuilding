@@ -134,7 +134,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     'https://turan-backend.online',
-    'https://www.turan-backend.online'
+    'https://www.turan-backend.online',
+    'https://tashbackend.serveo.net'
 ]
 
 CORS_ALLOWED_ORIGINS = [
