@@ -1,0 +1,5 @@
+FROM alpine:3.14
+
+RUN apk add --no-cache openssh-client
+
+CMD ssh -R $SERVEO_DOMAIN:80:localhost:$LOCAL_PORT serveo.net

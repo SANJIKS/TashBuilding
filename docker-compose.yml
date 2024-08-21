@@ -37,6 +37,19 @@ services:
       - static_volume:/app/static
       - media_volume:/app/media
 
+  serveo:
+    build: 
+      context: .
+      dockerfile: Dockerfile.serveo
+    env_file:
+      - .env
+    environment:
+      - SERVEO_DOMAIN=${SERVEO_DOMAIN}
+      - LOCAL_PORT=${LOCAL_PORT}
+    depends_on:
+      - nginx
+    restart: always
+
 volumes:
   static_volume:
   media_volume:
