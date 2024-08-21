@@ -37,15 +37,6 @@ services:
       - static_volume:/app/static
       - media_volume:/app/media
 
-  serveo:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - SERVEO_DOMAIN=${SERVEO_DOMAIN}
-      - PORT=${PORT}
-    ports:
-      - "${PORT}:${PORT}"
 
 volumes:
   static_volume:
