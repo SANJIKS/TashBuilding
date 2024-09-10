@@ -1,5 +1,17 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Unique, UniqueItem
+from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Unique, UniqueItem, HouseCarousel, House
+
+class HouseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = House
+        fields = '__all__'
+
+class HouseCarouselSerializer(serializers.ModelSerializer):
+    items = HouseSerializer(many=True, read_only=True)
+    class Meta:
+        model = HouseCarousel
+        fields = '__all__'
+
 
 class UniqueItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -112,6 +124,7 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
     maincards = MainCardSerializer(many=True, read_only=True, source='maincard_set')
     tabs = TabSerializer(many=True, read_only=True, source='tab_set')
     advantages = AdvantageSerializer(many=True, read_only=True, source='advantage_set')
+    house_carousels = HouseCarouselSerializer(many=True, read_only=True, source='house_carousel_set')
 
     class Meta:
         model = Category
