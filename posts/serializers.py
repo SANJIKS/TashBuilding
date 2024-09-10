@@ -124,7 +124,7 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
     maincards = MainCardSerializer(many=True, read_only=True, source='maincard_set')
     tabs = TabSerializer(many=True, read_only=True, source='tab_set')
     advantages = AdvantageSerializer(many=True, read_only=True, source='advantage_set')
-    house_carousels = HouseCarouselSerializer(many=True, read_only=True, source='house_carousel_set')
+    house_carousels = HouseCarouselSerializer(many=True, read_only=True, source='housecarousel_set')
 
     class Meta:
         model = Category
