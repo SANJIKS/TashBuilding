@@ -2,8 +2,8 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Category, MainCarousel, Footer
-from .serializers import CategoryDetailSerializer, CategorySerializer, MainCarouselSerializer, FooterSerializer
+from .models import Category, House, MainCarousel, Footer
+from .serializers import CategoryDetailSerializer, CategorySerializer, HouseDetailSerializer, MainCarouselSerializer, FooterSerializer
 
 
 class CategoryListView(generics.ListAPIView):
@@ -22,3 +22,8 @@ class FooterAPIView(APIView):
         footer = Footer.objects.first()
         serializer = FooterSerializer(footer)
         return Response(serializer.data, status=200)
+    
+class HouseDetailView(generics.RetrieveAPIView):
+    queryset = House.objects.all()
+    serializer_class = HouseDetailSerializer
+    lookup_field = 'id'

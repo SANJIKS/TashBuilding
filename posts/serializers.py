@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Unique, UniqueItem, HouseCarousel, House
 
+class HouseDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = House
+        fields = '__all__'
+        
 class HouseSerializer(serializers.ModelSerializer):
     class Meta:
         model = House
