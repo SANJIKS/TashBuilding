@@ -138,3 +138,19 @@ class House(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
+
+class HouseImageCarousel(models.Model):
+    house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True)
+
+
+class HouseImageItem(models.Model):
+    carousel = models.ForeignKey(HouseImageCarousel, on_delete=models.SET_NULL, null=True)
+    image = models.ImageField(upload_to='posts', null=True, blank=True)
+
+class HouseSchemeCarousel(models.Model):
+    house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True)
+
+
+class HouseSchemeItem(models.Model):
+    carousel = models.ForeignKey(HouseSchemeCarousel, on_delete=models.SET_NULL, null=True)
+    image = models.ImageField(upload_to='posts', null=True, blank=True)

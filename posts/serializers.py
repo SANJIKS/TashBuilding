@@ -1,7 +1,32 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Unique, UniqueItem, HouseCarousel, House
+from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Unique, UniqueItem, HouseCarousel, House, HouseImageCarousel, HouseImageItem, HouseSchemeCarousel, HouseSchemeItem
+
+class HouseImageItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HouseImageItem
+        fields = '__all__'
+
+class HouseImageCarouselSerializer(serializers.ModelSerializer):
+    items = HouseImageItemSerializer(many=True, read_only=True)
+    class Meta:
+        model = HouseImageCarousel
+        fields = '__all__'
+
+class HouseSchemeItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HouseSchemeItem
+        fields = '__all__'
+
+class HouseSchemeCarouselSerializer(serializers.ModelSerializer):
+    items = HouseSchemeItemSerializer(many=True, read_only=True)
+    class Meta:
+        model = HouseSchemeCarousel
+        fields = '__all__'
 
 class HouseDetailSerializer(serializers.ModelSerializer):
+    house_image_carousel = HouseImageCarouselSerializer(read_only=True, source='houseimagecarousel_set')
+    house_scheme_carousel = HouseSchemeCarouselSerializer(read_only=True, source='houseschemecarousel_set')
+    
     class Meta:
         model = House
         fields = '__all__'
