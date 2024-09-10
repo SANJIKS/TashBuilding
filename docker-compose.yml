@@ -17,7 +17,7 @@ services:
     volumes:
       - ./static_volume:/app/static
       - ./media_volume:/app/media
-    expose:
+    ports:
       - "8001:8002"
     command: gunicorn --bind 0.0.0.0:8002 core.wsgi:application
 
