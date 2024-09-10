@@ -136,5 +136,5 @@ class HouseCarousel(models.Model):
 class House(models.Model):
     carousel = models.ForeignKey(HouseCarousel, on_delete=models.SET_NULL, null=True, blank=True, related_name='items')
     title = models.CharField(max_length=200, null=True, blank=True)
-    text = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
