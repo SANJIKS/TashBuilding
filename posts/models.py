@@ -3,7 +3,7 @@ from colorfield.fields import ColorField
 
 class Category(models.Model):
     title = models.CharField(max_length=120, null=True, blank=True)
-
+    key = models.CharField(max_length=200, null=True, blank=True)
     def __str__(self) -> str:
         return self.title
 
