@@ -39,7 +39,10 @@ class HouseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_images(self, obj):
-        return [image.image.url for image in obj.images.all()]
+        request = self.context.get('request')
+        if not request:
+            return [image.image.url for image in obj.images.all()]
+        return [request.build_absolute_uri(image.image.url) for image in obj.images.all()]
 
 
 class UniqueItemSerializer(serializers.ModelSerializer):

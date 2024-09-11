@@ -2,6 +2,13 @@ import os
 from pathlib import Path
 from decouple import config
 
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+FORCE_SCRIPT_NAME = '/'
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_URL = config('BASE_URL')
