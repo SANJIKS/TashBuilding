@@ -159,7 +159,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://turanelectronics.kg',
     'https://turane-134e3a50d9e3.herokuapp.com',
     'https://turan-backend.online',
-    'https://www.turan-backend.online'
+    'https://www.turan-backend.online',
+    'https://tash-building.vercel.app'
 ]
 
 
