@@ -161,7 +161,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://turan-backend.online',
     'https://www.turan-backend.online',
     'https://tash-building.vercel.app',
-    'https://tash-building.kg'
+    'https://tash-building.kg',
+    'https://www.tash-building.kg'
 ]
 
 
