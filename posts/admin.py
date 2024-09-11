@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Footer, MainCarousel, MainCarouselItem, Category, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, Advantage, AdvantageItem, Unique, UniqueItem, MainText, HouseCarousel, House, HouseImageCarousel, HouseImageItem, HouseSchemeCarousel, HouseSchemeItem
+from .models import Footer, MainCarousel, MainCarouselItem, Category, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, Advantage, AdvantageItem, Unique, UniqueItem, MainText, House, HouseImage, HouseImageCarousel, HouseImageItem, HouseSchemeCarousel, HouseSchemeItem
 
-admin.site.register([Category, MainCarousel, MainCarouselItem, SizeCarousel, Size, SizeCarouselImage, Footer, Tab, TabItem, Advantage, AdvantageItem, Unique, UniqueItem, MainText, HouseCarousel, House, HouseSchemeCarousel, HouseSchemeItem, HouseImageCarousel, HouseImageItem])
+admin.site.register([Category, MainCarousel, MainCarouselItem, SizeCarousel, Size, SizeCarouselImage, Footer, Tab, TabItem, Advantage, AdvantageItem, Unique, UniqueItem, MainText, HouseImage, House, HouseSchemeCarousel, HouseSchemeItem, HouseImageCarousel, HouseImageItem])

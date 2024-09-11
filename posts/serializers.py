@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Unique, UniqueItem, HouseCarousel, House, HouseImageCarousel, HouseImageItem, HouseSchemeCarousel, HouseSchemeItem
+from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Unique, UniqueItem, House, HouseImageCarousel, HouseImageItem, HouseSchemeCarousel, HouseSchemeItem
 
 class HouseImageItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,15 +32,14 @@ class HouseDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class HouseSerializer(serializers.ModelSerializer):
+    images = serializers.SerializerMethodField()
+
     class Meta:
         model = House
         fields = '__all__'
 
-class HouseCarouselSerializer(serializers.ModelSerializer):
-    items = HouseSerializer(many=True, read_only=True)
-    class Meta:
-        model = HouseCarousel
-        fields = '__all__'
+    def get_images(self, obj):
+        return [image.image.url for image in obj.images.all()]
 
 
 class UniqueItemSerializer(serializers.ModelSerializer):
@@ -148,13 +147,7 @@ class MainTextSerializer(serializers.ModelSerializer):
 
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
-    main_carousels = MainCarouselSerializer(many=True, read_only=True, source='maincarousel_set')
-    size_carousels = SizeCarouselSerializer(many=True, read_only=True, source='sizecarousel_set')
-    main_image = MainImageSerializer(many=True, read_only=True, source='mainimage_set')
-    maincards = MainCardSerializer(many=True, read_only=True, source='maincard_set')
-    tabs = TabSerializer(many=True, read_only=True, source='tab_set')
-    advantages = AdvantageSerializer(many=True, read_only=True, source='advantage_set')
-    house_carousels = HouseCarouselSerializer(many=True, read_only=True, source='housecarousel_set')
+    house = HouseSerializer(many=True, read_only=True, source='house_set')
 
     class Meta:
         model = Category

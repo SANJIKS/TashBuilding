@@ -128,15 +128,15 @@ class MainText(models.Model):
     second_text = models.CharField(max_length=500, null=True, blank=True)
 
 
-class HouseCarousel(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL,null=True, blank=True)
-    title = models.CharField(max_length=200, null=True, blank=True)
-
-
 class House(models.Model):
-    carousel = models.ForeignKey(HouseCarousel, on_delete=models.SET_NULL, null=True, blank=True, related_name='items')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='items')
     title = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+
+
+class HouseImage(models.Model):
+    house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True, related_name='images')
+    image = models.ImageField(upload_to='posts', null=True, blank=True)
 
 
 class HouseImageCarousel(models.Model):
