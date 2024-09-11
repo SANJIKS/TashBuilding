@@ -3,8 +3,8 @@ from pathlib import Path
 from decouple import config
 
 SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 
 FORCE_SCRIPT_NAME = '/'
 
