@@ -127,6 +127,8 @@ class MainText(models.Model):
     description = models.TextField(null=True, blank=True)
     second_text = models.CharField(max_length=500, null=True, blank=True)
 
+    def __str__(self):
+        return self.title if self.title else 'MainText'
 
 class House(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
@@ -137,6 +139,8 @@ class House(models.Model):
     house_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     work_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
+    def __str__(self):
+        return self.title if self.title else 'House'
 
 class Table(models.Model):
     house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True, related_name='tables')
@@ -144,24 +148,38 @@ class Table(models.Model):
     choice = models.CharField(max_length=120, null=True, blank=True)
     cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.option} - {self.choice}'
 
 class HouseImage(models.Model):
     house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True, related_name='images')
     image = models.ImageField(upload_to='posts', null=True, blank=True)
 
+    def __str__(self):
+        return f'Image for {self.house}' if self.house else 'HouseImage'
 
 class HouseImageCarousel(models.Model):
     house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True)
 
+    def __str__(self):
+        return f'Image Carousel for {self.house}' if self.house else 'HouseImageCarousel'
 
 class HouseImageItem(models.Model):
     carousel = models.ForeignKey(HouseImageCarousel, on_delete=models.SET_NULL, null=True)
     image = models.ImageField(upload_to='posts', null=True, blank=True)
 
+    def __str__(self):
+        return f'Image Item for {self.carousel}' if self.carousel else 'HouseImageItem'
+
 class HouseSchemeCarousel(models.Model):
     house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True)
 
+    def __str__(self):
+        return f'Scheme Carousel for {self.house}' if self.house else 'HouseSchemeCarousel'
 
 class HouseSchemeItem(models.Model):
     carousel = models.ForeignKey(HouseSchemeCarousel, on_delete=models.SET_NULL, null=True)
     image = models.ImageField(upload_to='posts', null=True, blank=True)
+
+    def __str__(self):
+        return f'Scheme Item for {self.carousel}' if self.carousel else 'HouseSchemeItem'
