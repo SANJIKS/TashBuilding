@@ -133,6 +133,17 @@ class House(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    house_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    work_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+
+
+class Table(models.Model):
+    house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True, related_name='tables')
+    option = models.CharField(max_length=120, null=True, blank=True)
+    choice = models.CharField(max_length=120, null=True, blank=True)
+    cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+
 
 class HouseImage(models.Model):
     house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True, related_name='images')
