@@ -1,6 +1,11 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Unique, UniqueItem, House, HouseImageCarousel, HouseImageItem, HouseSchemeCarousel, HouseSchemeItem
+from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Table, Unique, UniqueItem, House, HouseImageCarousel, HouseImageItem, HouseSchemeCarousel, HouseSchemeItem
 
+class TableSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Table
+        fields = '__all__'
+        
 class HouseImageItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = HouseImageItem
@@ -26,7 +31,8 @@ class HouseSchemeCarouselSerializer(serializers.ModelSerializer):
 class HouseDetailSerializer(serializers.ModelSerializer):
     house_image_carousel = HouseImageCarouselSerializer(read_only=True, source='houseimagecarousel_set')
     house_scheme_carousel = HouseSchemeCarouselSerializer(read_only=True, source='houseschemecarousel_set')
-    
+    tables = TableSerializer(many=True, read_only=True)
+
     class Meta:
         model = House
         fields = '__all__'
@@ -36,7 +42,7 @@ class HouseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = House
-        fields = '__all__'
+        fields = ('category', 'title', 'description')
 
     def get_images(self, obj):
         request = self.context.get('request')
