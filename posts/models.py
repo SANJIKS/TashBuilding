@@ -159,7 +159,7 @@ class HouseImage(models.Model):
         return f'Image for {self.house}' if self.house else 'HouseImage'
 
 class HouseImageCarousel(models.Model):
-    house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True)
+    house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True, related_name='house_image_carousels')
 
     def __str__(self):
         return f'Image Carousel for {self.house}' if self.house else 'HouseImageCarousel'
@@ -172,7 +172,7 @@ class HouseImageItem(models.Model):
         return f'Image Item for {self.carousel}' if self.carousel else 'HouseImageItem'
 
 class HouseSchemeCarousel(models.Model):
-    house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True)
+    house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True, related_name='house_scheme_carousels')
 
     def __str__(self):
         return f'Scheme Carousel for {self.house}' if self.house else 'HouseSchemeCarousel'

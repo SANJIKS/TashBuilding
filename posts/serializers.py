@@ -29,8 +29,8 @@ class HouseSchemeCarouselSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class HouseDetailSerializer(serializers.ModelSerializer):
-    house_image_carousel = HouseImageCarouselSerializer(read_only=True, source='houseimagecarousel_set')
-    house_scheme_carousel = HouseSchemeCarouselSerializer(read_only=True, source='houseschemecarousel_set')
+    house_image_carousel = HouseImageCarouselSerializer(many=True, read_only=True, source='house_image_carousels')
+    house_scheme_carousel = HouseSchemeCarouselSerializer(many=True, read_only=True, source='house_scheme_carousels')
     tables = TableSerializer(many=True, read_only=True)
 
     class Meta:
