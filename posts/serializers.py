@@ -42,7 +42,7 @@ class HouseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = House
-        fields = ('category', 'title', 'description')
+        fields = ('category', 'title', 'description', 'images')
 
     def get_images(self, obj):
         request = self.context.get('request')
