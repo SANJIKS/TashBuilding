@@ -160,26 +160,15 @@ class HouseImage(models.Model):
 
 class HouseImageCarousel(models.Model):
     house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True, related_name='house_image_carousels')
+    image = models.ImageField(upload_to='posts', null=True, blank=True)
 
     def __str__(self):
         return f'Image Carousel for {self.house}' if self.house else 'HouseImageCarousel'
 
-class HouseImageItem(models.Model):
-    carousel = models.ForeignKey(HouseImageCarousel, on_delete=models.SET_NULL, null=True, related_name='items')
-    image = models.ImageField(upload_to='posts', null=True, blank=True)
-
-    def __str__(self):
-        return f'Image Item for {self.carousel}' if self.carousel else 'HouseImageItem'
 
 class HouseSchemeCarousel(models.Model):
     house = models.ForeignKey(House, on_delete=models.SET_NULL, null=True, blank=True, related_name='house_scheme_carousels')
-
-    def __str__(self):
-        return f'Scheme Carousel for {self.house}' if self.house else 'HouseSchemeCarousel'
-
-class HouseSchemeItem(models.Model):
-    carousel = models.ForeignKey(HouseSchemeCarousel, on_delete=models.SET_NULL, null=True, related_name='items')
     image = models.ImageField(upload_to='posts', null=True, blank=True)
 
     def __str__(self):
-        return f'Scheme Item for {self.carousel}' if self.carousel else 'HouseSchemeItem'
+        return f'Scheme Carousel for {self.house}' if self.house else 'HouseSchemeCarousel'
