@@ -172,3 +172,8 @@ class HouseSchemeCarousel(models.Model):
 
     def __str__(self):
         return f'Scheme Carousel for {self.house}' if self.house else 'HouseSchemeCarousel'
+
+
+class Form(models.Model):
+    name = models.CharField(max_length=120)
+    phone_number = models.CharField(max_length=120)
