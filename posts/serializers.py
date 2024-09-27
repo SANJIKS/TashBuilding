@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Table, Unique, UniqueItem, House, HouseImageCarousel, HouseSchemeCarousel
+from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Table, Unique, UniqueItem, House, HouseImageCarousel, HouseSchemeCarousel, Form
 
 class TableSerializer(serializers.ModelSerializer):
     class Meta:
@@ -159,3 +159,8 @@ class FooterSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
+class FormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Form
+        fields = '__all__'
