@@ -12,6 +12,10 @@ class MainImage(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(upload_to='posts/', null=True, blank=True)
 
+class MainLSTKhome(models.Model):
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
+
+
 class MainCard(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=200, null=True, blank=True)

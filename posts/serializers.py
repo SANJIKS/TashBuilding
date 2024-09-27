@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Table, Unique, UniqueItem, House, HouseImageCarousel, HouseSchemeCarousel, Form, MainImage
+from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Table, Unique, UniqueItem, House, HouseImageCarousel, HouseSchemeCarousel, Form, MainImage, MainLSTKhome
+
+class MainLSTKSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MainLSTKhome
+        fields = '__all__'
 
 class MainImageSerializer(serializers.ModelSerializer):
     class Meta:

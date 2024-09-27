@@ -2,9 +2,14 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Category, House, MainCarousel, Footer, Form, MainImage
-from .serializers import CategoryDetailSerializer, CategorySerializer, HouseDetailSerializer, MainCarouselSerializer, FooterSerializer, FormSerializer, MainImageSerializer
+from .models import Category, House, MainCarousel, Footer, Form, MainImage, MainLSTKhome
+from .serializers import CategoryDetailSerializer, CategorySerializer, HouseDetailSerializer, MainCarouselSerializer, FooterSerializer, FormSerializer, MainImageSerializer, MainLSTKSerializer
 
+
+class MainLSTKView(generics.ListAPIView):
+    queryset = MainLSTKhome.objects.all()
+    serializer_class = MainLSTKSerializer
+    
 class MainImageView(generics.ListAPIView):
     queryset = MainImage.objects.all()
     serializer_class = MainImageSerializer
