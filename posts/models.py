@@ -99,22 +99,24 @@ class TabItem(models.Model):
 
 
 class Advantage(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    # category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=120, null=True, blank=True)
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
     
 
-class AdvantageItem(models.Model):
-    advantage = models.ForeignKey(Advantage, on_delete=models.SET_NULL, null=True, related_name='items')
-    comparison = models.CharField(max_length=200, null=True, blank=True)
-    lstk = models.CharField(max_length=200, null=True, blank=True)
-    traditional_materials = models.CharField(max_length=200, null=True, blank=True)
+# class AdvantageItem(models.Model):
+#     advantage = models.ForeignKey(Advantage, on_delete=models.SET_NULL, null=True, related_name='items')
+#     comparison = models.CharField(max_length=200, null=True, blank=True)
+#     lstk = models.CharField(max_length=200, null=True, blank=True)
+#     traditional_materials = models.CharField(max_length=200, null=True, blank=True)
 
 
 class Unique(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='posts/', null=True, blank=True)
 
 

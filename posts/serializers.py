@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, AdvantageItem, Advantage, Table, Unique, UniqueItem, House, HouseImageCarousel, HouseSchemeCarousel, Form, MainImage, MainLSTKhome
+from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, Advantage, Table, Unique, UniqueItem, House, HouseImageCarousel, HouseSchemeCarousel, Form, MainImage, MainLSTKhome
 
 class MainLSTKSerializer(serializers.ModelSerializer):
     class Meta:
@@ -77,14 +77,14 @@ class TabSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AdvantageItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AdvantageItem
-        fields = '__all__'
+# class AdvantageItemSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = AdvantageItem
+#         fields = '__all__'
 
 
 class AdvantageSerializer(serializers.ModelSerializer):
-    items = AdvantageItemSerializer(many=True, read_only=True)
+    # items = AdvantageItemSerializer(many=True, read_only=True)
     
     class Meta:
         model = Advantage
