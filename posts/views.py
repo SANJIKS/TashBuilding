@@ -2,8 +2,12 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Category, House, MainCarousel, Footer, Form, MainImage, MainLSTKhome, Unique, Advantage
-from .serializers import CategoryDetailSerializer, CategorySerializer, HouseDetailSerializer, MainCarouselSerializer, FooterSerializer, FormSerializer, MainImageSerializer, MainLSTKSerializer, UniqueSerializer, AdvantageSerializer
+from .models import Category, House, MainCarousel, Footer, Form, MainImage, MainLSTKhome, Unique, Advantage, Video
+from .serializers import CategoryDetailSerializer, CategorySerializer, HouseDetailSerializer, MainCarouselSerializer, FooterSerializer, FormSerializer, MainImageSerializer, MainLSTKSerializer, UniqueSerializer, AdvantageSerializer, VideoSerializer
+
+class VideoView(generics.ListAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
 
 class AdvantageView(generics.ListAPIView):
     queryset = Advantage.objects.all()

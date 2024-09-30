@@ -184,3 +184,8 @@ class HouseSchemeCarousel(models.Model):
 class Form(models.Model):
     name = models.CharField(max_length=120)
     phone_number = models.CharField(max_length=120)
+
+class Video(models.Model):
+    link = models.CharField(max_length=300, null=True, blank=True)
+    image = models.ImageField(upload_to='posts', null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
