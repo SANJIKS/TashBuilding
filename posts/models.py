@@ -13,6 +13,10 @@ class MainImage(models.Model):
     image = models.ImageField(upload_to='posts/', null=True, blank=True)
 
 class MainLSTKhome(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    button_title = models.CharField(max_length=200, null=True, blank=True)
+    description_1 = models.TextField(null=True, blank=True)
+    description_2 = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='posts/', null=True, blank=True)
 
 
@@ -71,15 +75,11 @@ class SizeCarouselImage(models.Model):
 
 
 class Footer(models.Model):
-    title = models.CharField(max_length=120, null=True, blank=True)
-    instagram = models.CharField(max_length=200, null=True, blank=True)
-    twitter = models.CharField(max_length=200, null=True, blank=True)
-    youtube = models.CharField(max_length=200, null=True, blank=True)
-    phone_number = models.CharField(max_length=50, null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
-    whatsapp = models.CharField(max_length=50, null=True, blank=True)
-    telegram = models.CharField(max_length=50, null=True, blank=True)
-    address = models.CharField(max_length=200, null=True, blank=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    email = models.CharField(max_length=100, null=True, blank=True)
+    title_whatsapp = models.CharField(max_length=120, null=True, blank=True)
+    title_telegram = models.CharField(max_length=120, null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
 
 
 
@@ -186,6 +186,54 @@ class Form(models.Model):
     phone_number = models.CharField(max_length=120)
 
 class Video(models.Model):
+    title = models.CharField(max_length=120, null=True, blank=True)
+    link_inst = models.CharField(max_length=200, null=True, blank=True)
+    link_youtube = models.CharField(max_length=200, null=True, blank=True)
+
+
+class VideoItem(models.Model):
+    video = models.ForeignKey(Video, on_delete=models.SET_NULL, related_name='videos', null=True)
     link = models.CharField(max_length=300, null=True, blank=True)
     image = models.ImageField(upload_to='posts', null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
+
+
+class ComLSTK(models.Model):
+    title = models.CharField(max_length=120, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    button_title = models.CharField(max_length=200, null=True, blank=True)
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
+
+
+class BigDescription(models.Model):
+    description = models.TextField(null=True, blank=True)
+
+
+class Technologically(models.Model):
+    title = models.CharField(max_length=120, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    button_title = models.CharField(max_length=200, null=True, blank=True)
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
+
+
+
+class Carousel(models.Model):
+    title = models.CharField(max_length=120, null=True, blank=True)
+
+
+class CarouselItem(models.Model):
+    carousel = models.ForeignKey(Carousel, on_delete=models.SET_NULL, null=True, related_name='carousels')
+    title = models.CharField(max_length=120, null=True, blank=True)
+    size = models.CharField(max_length=120, null=True, blank=True)
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
+
+
+class Navbar(models.Model):
+    title = models.CharField(max_length=120, null=True, blank=True)
+    link_inst = models.CharField(max_length=200, null=True, blank=True)
+    link_youtube = models.CharField(max_length=200, null=True, blank=True)
+
+
+class NavbarItem(models.Model):
+    navbar = models.ForeignKey(Navbar, on_delete=models.SET_NULL, related_name='items', null=True)
     text = models.TextField(null=True, blank=True)

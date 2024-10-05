@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Footer, MainCarousel, MainCarouselItem, MainText, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, Advantage, Table, Unique, UniqueItem, House, HouseImageCarousel, HouseSchemeCarousel, Form, MainImage, MainLSTKhome, Video
+from .models import BigDescription, Carousel, CarouselItem, Category, ComLSTK, Footer, MainCarousel, MainCarouselItem, MainText, Navbar, NavbarItem, SizeCarousel, Size, SizeCarouselImage, MainImage, MainCard, MainCardItem, Tab, TabItem, Advantage, Table, Technologically, Unique, UniqueItem, House, HouseImageCarousel, HouseSchemeCarousel, Form, MainImage, MainLSTKhome, Video, VideoItem
 
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -179,3 +179,60 @@ class FormSerializer(serializers.ModelSerializer):
     class Meta:
         model = Form
         fields = '__all__'
+
+
+class ComLSTKSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ComLSTK
+        fields = '__all__'
+
+
+class BigDescriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BigDescription
+        fields = '__all__'
+
+
+class TechnologicallySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Technologically
+        fields = '__all__'
+
+
+class CarouselItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CarouselItem
+        exclude = ['carousel']
+
+class CarouselSerializer(serializers.ModelSerializer):
+    carousels = CarouselItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Carousel
+        fields = ['id', 'title', 'carousels']
+
+
+class VideoItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoItem
+        exclude = ['video']
+
+class VideoSerializer(serializers.ModelSerializer):
+    videos = VideoItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Video
+        fields = ['id', 'title', 'link_inst', 'link_youtube', 'videos']
+
+
+class NavbarItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NavbarItem
+        exclude = ['navbar']
+
+class NavbarSerializer(serializers.ModelSerializer):
+    items = NavbarItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Navbar
+        fields = ['id', 'title', 'link_inst', 'link_youtube', 'items']

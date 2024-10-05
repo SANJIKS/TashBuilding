@@ -2,8 +2,8 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Category, House, MainCarousel, Footer, Form, MainImage, MainLSTKhome, Unique, Advantage, Video
-from .serializers import CategoryDetailSerializer, CategorySerializer, HouseDetailSerializer, MainCarouselSerializer, FooterSerializer, FormSerializer, MainImageSerializer, MainLSTKSerializer, UniqueSerializer, AdvantageSerializer, VideoSerializer
+from .models import BigDescription, Carousel, Category, ComLSTK, House, MainCarousel, Footer, Form, MainImage, MainLSTKhome, Navbar, Technologically, Unique, Advantage, Video
+from .serializers import BigDescriptionSerializer, CarouselSerializer, CategoryDetailSerializer, CategorySerializer, ComLSTKSerializer, HouseDetailSerializer, MainCarouselSerializer, FooterSerializer, FormSerializer, MainImageSerializer, MainLSTKSerializer, NavbarSerializer, TechnologicallySerializer, UniqueSerializer, AdvantageSerializer, VideoSerializer
 
 class VideoView(generics.ListAPIView):
     queryset = Video.objects.all()
@@ -51,3 +51,32 @@ class HouseDetailView(generics.RetrieveAPIView):
 class FormCreateView(generics.CreateAPIView):
     queryset = Form.objects.all()
     serializer_class = FormSerializer
+
+class ComLSTKView(generics.ListAPIView):
+    queryset = ComLSTK.objects.all()
+    serializer_class = ComLSTKSerializer
+
+
+class BigDescriptionView(generics.ListAPIView):
+    queryset = BigDescription.objects.all()
+    serializer_class = BigDescriptionSerializer
+
+
+class TechnologicallyView(generics.ListAPIView):
+    queryset = Technologically.objects.all()
+    serializer_class = TechnologicallySerializer
+
+
+class CarouselListView(generics.ListAPIView):
+    queryset = Carousel.objects.all()
+    serializer_class = CarouselSerializer
+
+
+class VideoListView(generics.ListAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
+
+
+class NavbarListView(generics.ListAPIView):
+    queryset = Navbar.objects.all()
+    serializer_class = NavbarSerializer
