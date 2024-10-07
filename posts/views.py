@@ -17,9 +17,12 @@ class UniqueView(generics.ListAPIView):
     queryset = Unique.objects.all()
     serializer_class = UniqueSerializer
     
-class MainLSTKView(generics.ListAPIView):
-    queryset = MainLSTKhome.objects.all()
-    serializer_class = MainLSTKSerializer
+class MainLSTKView(APIView):
+    def get(self, reqeust):
+        mainlstk = MainLSTKhome.objects.first()
+        serializer = MainLSTKSerializer(mainlstk)
+        return Response(serializer.data, status=200)
+
 
 class MainImageView(generics.ListAPIView):
     queryset = MainImage.objects.all()
