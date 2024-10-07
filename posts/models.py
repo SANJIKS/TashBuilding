@@ -275,6 +275,7 @@ class ComLSTK(models.Model):
     description = models.TextField(null=True, blank=True)
     button_title = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(upload_to='posts/', null=True, blank=True)
+    image_mobile = models.ImageField(upload_to='posts/', null=True, blank=True)
 
     def __str__(self):
         return self.title if self.title else 'ComLSTK'
