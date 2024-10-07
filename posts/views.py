@@ -61,8 +61,10 @@ class ComLSTKView(generics.ListAPIView):
 
 
 class BigDescriptionView(generics.ListAPIView):
-    queryset = BigDescription.objects.all()
-    serializer_class = BigDescriptionSerializer
+    def get(self, reqeust):
+        description = BigDescription.objects.first()
+        serializer = BigDescriptionSerializer(description)
+        return Response(serializer.data, status=200)
 
 
 class TechnologicallyView(generics.ListAPIView):
