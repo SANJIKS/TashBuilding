@@ -327,6 +327,6 @@ class Navbar(models.Model):
 class NavbarItem(models.Model):
     navbar = models.ForeignKey(Navbar, on_delete=models.SET_NULL, related_name='items', null=True)
     text = models.TextField(null=True, blank=True)
-
+    link = models.CharField(null=True, blank=True)
     def __str__(self):
         return self.text if self.text else 'NavbarItem'
